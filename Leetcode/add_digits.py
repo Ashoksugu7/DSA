@@ -39,7 +39,7 @@ class Solution(object):
         
         
         
-obj = Solution();
+obj = Solution()
 print(obj.addDigits(9875))
 print(obj.quick_solution(9875))
 
