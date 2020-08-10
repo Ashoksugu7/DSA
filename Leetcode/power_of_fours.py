@@ -18,6 +18,7 @@ Example 3:
 Input: 256
 Output: true
 Follow up: Could you solve it without loops/recursion?
+
 """
 class Solution:
     def isPowerOfFour(self, num: int) -> bool:
