@@ -197,10 +197,140 @@ class MyLinkedList:
         second=slow.next
         slow.next=None
         first=self.start
-        print(self.traverse())
-        print(self.traverse(second))
+        # print(self.traverse())
+        # print(self.traverse(second))
         self.reverse_iterative()
-        print(self.traverse())
+        # print(self.traverse())
+
+
+    def merge(self, first, second):
+        
+        start=None
+        if first is None and second is None:
+            return None
+
+        if first is None:
+            return second
+        
+        if second is None:
+            return first
+
+        if first.val < second.val:
+            start=first
+            first=first.next
+        else:
+            start=second
+            second=second.next
+
+        p=start
+        while first is not None and second is not None:
+            if first.val < second.val:
+                p.next=first
+                first=first.next
+            else:
+                p.next=second
+                second=second.next
+            p=p.next
+
+        while first is not None:
+            p.next=first
+            first=first.next
+            p=p.next
+
+        while second is not None:
+            p.next=second
+            second=second.next
+            p=p.next
+
+        print(self.traverse(start))
+        return start
+
+    def addTwoNumbers(self, l1, l2):
+
+        carry=0
+        start=Node(0)
+        p=start
+
+        if l1 is None or l2 is None:
+            return l1 or l2
+        while l1 is not None and l2 is not None:
+            val =l1.val+l2.val+carry
+            
+            if val > 9:
+                val=val-10
+                carry=1
+            else:
+                carry=0
+            p.next=Node(val)
+            p=p.next
+            l1=l1.next
+            l2=l2.next
+
+        while l1 is not None:
+            val=l1.val+carry
+
+            if val > 9:
+                val=val-10
+                carry=1
+            else:
+                carry=0
+            p.next=Node(val)
+            p=p.next
+            l1=l1.next
+        
+        while l2 is not None:
+            val=l2.val+carry
+
+            if val >9:
+                val=val-10
+                carry=1
+            else:
+                carry=0
+            p.next=Node(val)
+            p=p.next
+            l2=l2.next
+
+        if carry ==1:
+            p.next=Node(1)
+
+        return start.next
+            
+
+    def bubble_sort(self):
+        head=self.start
+        flag=True
+        i=head
+        while i.next is not None:
+            j=i.next
+            while j is not None:
+                print(obj.traverse())
+                if i.val > j.val:
+                    i.val, j.val = j.val, i.val
+                j=j.next
+            
+            i=i.next
+        return
+
+    def merge_sort(self, head):
+        if head is None or head.next is None:
+            return head
+
+        temp = head
+        slow = head
+        fast = head
+
+        while fast is not None and fast.next is not None:
+            temp=slow
+            slow=slow.next
+            fast=fast.next.next
+
+        temp.next = None
+
+        L= self.merge_sort(head)
+        R = self.merge_sort(slow)
+        print(self.traverse(L), self.traverse(R))
+        return self.merge(L,R)
+
 
 
     
@@ -213,23 +343,18 @@ class MyLinkedList:
 # Your MyLinkedList object will be instantiated and called as such:
 obj = MyLinkedList()
 # param_1 = obj.get(index)
-# obj.addAtHead(2)
-# obj.addAtHead(3)
-# obj.addAtTail(0)
-# obj.addAtTail(4)
-
-
-# obj.addAtTail(3)
-# obj.addAtTail(2)
-# obj.addAtTail(0)
-# obj.addAtTail(4)
-# print("Cycle created: ",obj.cycle_creation(1))
-
-obj.addAtTail(1)
-obj.addAtTail(2)
+obj.addAtHead(-1)
+obj.addAtTail(5)
 obj.addAtTail(3)
 obj.addAtTail(4)
-obj.addAtTail(5)
+obj.addAtTail(0)
+# obj2.addAtTail(5)
+# obj2.addAtTail(9)
+print(obj.traverse())
+#obj.bubble_sort()
+obj.merge_sort(obj.start)
+print(obj.traverse())
+
 # print("Cycle created: ",obj.cycle_creation(0))
 
 # obj.addAtTail(1)
@@ -248,6 +373,7 @@ obj.addAtTail(5)
 # obj.deleteAtIndex(index)  
 
 # obj.reverse_iterative()
-print(obj.traverse())
-print(obj.split())
+# print(obj.traverse())
+# # print(obj.split())
+# print(obj.addTwoNumbers(None, obj2.start))
 
