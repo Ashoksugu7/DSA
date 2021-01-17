@@ -6,4 +6,9 @@ Created on Sun Jul 26 19:23:31 2020
 @author: ashok
 """
 
-print('hi')
+try:
+    print(t)
+except NameError:
+  print("Variable x is not defined")
+except:
+  print("Something else went wrong")
