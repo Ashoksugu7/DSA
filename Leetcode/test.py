@@ -9,7 +9,7 @@ def performIterator(tuplevalues):
         if i==0:
             res.append(list_val[i][:4])
 
-        if i==1:
+        if i==1:    
             res.append( tuple( [list_val[1][0]]*len(list_val[1])) )
             
 
